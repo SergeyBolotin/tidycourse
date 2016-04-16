@@ -1,18 +1,26 @@
 library("dplyr")
 
+#read test data
 test <- read.table("./UCI HAR Dataset/test/X_test.txt",header = FALSE)
+#read subjects data
 subject_test<- read.table("./UCI HAR Dataset/test/subject_test.txt",header = FALSE)
 colnames(subject_test)[1] = "Subject"
+#read activity data
 activity_test<- read.table("./UCI HAR Dataset/test/y_test.txt",header = FALSE)
 colnames(activity_test)[1] = "Activity"
+#add to test data subject and activity data
 test <-bind_cols(test, subject_test, activity_test)
 test <- mutate(test, Sample = "test")
 
+#read train data
 train<- read.table("./UCI HAR Dataset/train/X_train.txt",header = FALSE)
+#read subjects data
 subject_train<- read.table("./UCI HAR Dataset/train/subject_train.txt",header = FALSE)
 colnames(subject_train)[1] = "Subject"
+#read activity data
 activity_train<- read.table("./UCI HAR Dataset/train/y_train.txt",header = FALSE)
 colnames(activity_train)[1] = "Activity"
+#add to test data subject and activity data
 train <-bind_cols(train, subject_train, activity_train)
 train <- mutate(train, Sample = "train")
 
